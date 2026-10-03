@@ -1,0 +1,74 @@
+{
+  "status": {
+    "current_stage": null,
+    "progress": 100,
+    "message": "اكتمل في 5.6ث",
+    "state": "done",
+    "image": "isi_0049.png",
+    "started_at": "2026-10-03 07:09:06",
+    "finished_at": "2026-10-03 07:09:11",
+    "stop_requested": false,
+    "stages": [
+      {
+        "id": 1,
+        "name_ar": "تنظيف الصورة",
+        "name_en": "Cleaning",
+        "status": "done",
+        "elapsed": 0.01
+      },
+      {
+        "id": 2,
+        "name_ar": "تقطيع إلى كلمات",
+        "name_en": "Cut to words",
+        "status": "done",
+        "elapsed": 0.13
+      },
+      {
+        "id": 3,
+        "name_ar": "Tesseract",
+        "name_en": "Tesseract",
+        "status": "done",
+        "elapsed": 0.77
+      },
+      {
+        "id": 4,
+        "name_ar": "PP-OCRv6 عربي",
+        "name_en": "PP-OCRv6",
+        "status": "done",
+        "elapsed": 4.25
+      },
+      {
+        "id": 5,
+        "name_ar": "Qari OCR (VL)",
+        "name_en": "Qari OCR",
+        "status": "done",
+        "elapsed": 0.35
+      },
+      {
+        "id": 6,
+        "name_ar": "إضافة الترقيم",
+        "name_en": "Punctuation",
+        "status": "done",
+        "elapsed": 0.06
+      }
+    ]
+  },
+  "tesseract": {
+    "workers": 7,
+    "worker_mb": 500,
+    "available_mb": 3770,
+    "saved_at": "2026-10-03 06:52:06"
+  },
+  "qari": {
+    "workers": 1,
+    "worker_mb": 2500,
+    "available_mb": 4389,
+    "saved_at": "2026-10-03 06:52:07"
+  },
+  "ppocrv6": {
+    "workers": 4,
+    "worker_mb": 1000,
+    "available_mb": 4316,
+    "saved_at": "2026-10-03 06:52:07"
+  }
+}

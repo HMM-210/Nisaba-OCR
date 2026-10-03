@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nissaba OCR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body data-lang="ar">
+
+    <div class="particles" id="particles"></div>
+
+    <div class="app">
+
+        <header class="topbar">
+            <button class="icobtn" id="settings-btn" type="button" title="الإعدادات">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 008.7 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 8.7a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33H9a1.65 1.65 0 001-1.51V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z" />
+                </svg>
+            </button>
+            <div class="lang-switch">
+                <button type="button" class="lang-btn active" data-lang="ar">عربي</button>
+                <button type="button" class="lang-btn" data-lang="en">EN</button>
+            </div>
+
+            <div class="status">
+                <span class="dot" id="connection-dot"></span>
+                <span id="connection-text">خامل</span>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-glow"></div>
+            <div class="hero-content">
+                <h1 class="hero-title">Nissaba OCR</h1>
+                <p class="hero-line"></p>
+                <p class="hero-desc" data-ar="تعرّف ضوئي على العربية · محلي · بلا إنترنت"
+                    data-en="Arabic OCR · Local · Offline">تعرّف ضوئي على العربية · محلي · بلا إنترنت</p>
+            </div>
+        </section>
+
+        <section class="upload" id="upload-zone">
+            <input type="file" id="file-input" accept="image/*" hidden>
+            <div class="upload-inner">
+                <div class="upload-ring">
+                    <svg viewBox="0 0 80 80">
+                        <circle cx="40" cy="40" r="35" fill="none" stroke="currentColor" stroke-width="0.5"
+                            opacity="0.3" />
+                        <circle cx="40" cy="40" r="35" fill="none" stroke="currentColor" stroke-width="1.5"
+                            stroke-dasharray="10 20" class="ring-spin" />
+                        <path d="M 40 25 L 40 55 M 25 40 L 55 40" stroke="currentColor" stroke-width="2" />
+                    </svg>
+                </div>
+                <p class="upload-title" data-ar="أفلت الصورة هنا" data-en="Drop image here">أفلت الصورة هنا</p>
+                <p class="upload-hint">PNG · JPG · WEBP · BMP</p>
+            </div>
+        </section>
+
+        <div class="workspace">
+
+            <aside class="stages-panel">
+                <div class="panel-head">
+                    <span class="panel-title" data-ar="المراحل" data-en="Stages">المراحل</span>
+                    <span class="panel-count" id="stages-count">0 / 6</span>
+                </div>
+                <div class="stages" id="stages-list"></div>
+                <div class="timer-block">
+                    <span class="timer-label" data-ar="الزمن" data-en="Time">الزمن</span>
+                    <span class="timer-value" id="global-timer">00:00.0</span>
+                </div>
+            </aside>
+
+            <main class="output-panel">
+                <div class="output-head">
+                    <span class="panel-title" data-ar="النص المُستخرج" data-en="Extracted Text">النص المُستخرج</span>
+                    <button class="icobtn" id="copy-btn" type="button">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path
+                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="output-body">
+                    <div class="text-output" id="text-output" data-placeholder-ar="في انتظار النص..."
+                        data-placeholder-en="Waiting for text..."></div>
+                </div>
+
+                <div class="output-foot">
+                    <div class="stat">
+                        <span class="stat-num" id="stat-words">—</span>
+                        <span class="stat-lbl" data-ar="كلمة" data-en="Words">كلمة</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" id="stat-time">—</span>
+                        <span class="stat-lbl" data-ar="ثانية" data-en="Seconds">ثانية</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num" id="stat-state">—</span>
+                        <span class="stat-lbl" data-ar="الحالة" data-en="Status">الحالة</span>
+                    </div>
+                    <div class="foot-actions">
+                        <button class="btn" id="stop-btn" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="9" />
+                                <rect x="9" y="9" width="6" height="6" rx="1" />
+                            </svg>
+                            <span data-ar="إيقاف" data-en="Stop">إيقاف</span>
+                        </button>
+                        <button class="btn btn-danger" id="clear-btn" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path
+                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                            <span data-ar="مسح" data-en="Clear">مسح</span>
+                        </button>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <footer class="footer">
+            <span>NISSABA</span>
+            <span class="footer-dot"></span>
+            <span>MIT LICENSE</span>
+        </footer>
+
+    </div>
+
+    <div class="settings-modal" id="settings-modal" hidden>
+        <div class="settings-backdrop" id="settings-backdrop"></div>
+        <div class="settings-panel">
+
+            <div class="settings-head">
+                <span class="panel-title">الإعدادات</span>
+                <button class="icobtn" id="settings-close" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M18 6L6 18M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="settings-body">
+
+                <section class="settings-section">
+                    <h3 class="settings-title">المراحل المُفعّلة</h3>
+                    <div class="settings-grid">
+                        <label class="settings-check"><input type="checkbox" data-stage="1"><span>تنظيف
+                                الصورة</span></label>
+                        <label class="settings-check"><input type="checkbox" data-stage="2"><span>تقطيع إلى
+                                كلمات</span></label>
+                        <label class="settings-check"><input type="checkbox"
+                                data-stage="3"><span>Tesseract</span></label>
+                        <label class="settings-check"><input type="checkbox"
+                                data-stage="4"><span>PP-OCRv6</span></label>
+                        <label class="settings-check"><input type="checkbox" data-stage="5"><span>Qari
+                                OCR</span></label>
+                        <label class="settings-check"><input type="checkbox" data-stage="6"><span>إضافة
+                                الترقيم</span></label>
+                    </div>
+                </section>
+
+                <section class="settings-section">
+                    <h3 class="settings-title">حدود الثقة للقبول</h3>
+                    <div class="settings-row">
+                        <label>Tesseract</label>
+                        <input type="range" id="thr-tesseract" min="0.50" max="0.99" step="0.01">
+                        <span class="settings-val" id="thr-tesseract-val">0.90</span>
+                    </div>
+                    <div class="settings-row">
+                        <label>PP-OCRv6</label>
+                        <input type="range" id="thr-ppocrv6" min="0.50" max="0.99" step="0.01">
+                        <span class="settings-val" id="thr-ppocrv6-val">0.85</span>
+                    </div>
+                    <div class="settings-row">
+                        <label>Qari OCR</label>
+                        <input type="range" id="thr-qari" min="0.50" max="0.99" step="0.01">
+                        <span class="settings-val" id="thr-qari-val">0.92</span>
+                    </div>
+                </section>
+
+                <details class="settings-section settings-details">
+                    <summary class="settings-title">خيارات متقدمة</summary>
+
+                    <div class="settings-row">
+                        <label>عدد كلمات Qari</label>
+                        <input type="number" id="qari-tokens" min="8" max="128" step="8">
+                    </div>
+                    <div class="settings-row">
+                        <label>دقة التكبير</label>
+                        <input type="number" id="clean-factor" min="1" max="8" step="1">
+                    </div>
+                    <div class="settings-row">
+                        <label>أدنى حجم للكلمة</label>
+                        <input type="range" id="word-min" min="0.10" max="0.80" step="0.05">
+                        <span class="settings-val" id="word-min-val">0.40</span>
+                    </div>
+                    <div class="settings-row">
+                        <label>فجوة الالتصاق</label>
+                        <input type="range" id="word-gap" min="0.10" max="0.80" step="0.05">
+                        <span class="settings-val" id="word-gap-val">0.30</span>
+                    </div>
+                </details>
+
+            </div>
+
+            <div class="settings-foot">
+                <button class="btn" id="settings-reset" type="button">إعادة الافتراضي</button>
+                <button class="btn btn-primary" id="settings-save" type="button">حفظ</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/app.js"></script>
+</body>
+
+</html>

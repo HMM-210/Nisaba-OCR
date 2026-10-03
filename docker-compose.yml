@@ -1,0 +1,16 @@
+services:
+  nisaba-ocr:
+    build: .
+    image: nisaba-ocr:latest
+    container_name: nisaba-ocr
+    ports:
+      - "8000:8000"
+    environment:
+      - HOST=0.0.0.0
+    volumes:
+      - "./0-raw photo:/app/0-raw photo"
+      - "./1-cleaned photo:/app/1-cleaned photo"
+      - "./2-words:/app/2-words"
+      - "./3-the result:/app/3-the result"
+      - "./config:/app/config"
+    restart: unless-stopped

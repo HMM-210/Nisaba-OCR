@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.pyo
+.git/
+.gitignore
+.DS_Store
+venv/
+.venv/
+1-cleaned photo/
+2-words/
+3-the result/
+*.zip
+*.tar
+*.log

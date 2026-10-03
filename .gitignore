@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+.venv/
+venv/
+env/
+
+1-cleaned photo/
+2-words/
+3-the result/
+_isi_images/
+
+config/config.json.tmp
+*.tmp
+*.log
+
+.vscode/
+models/
