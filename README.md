@@ -131,7 +131,7 @@ git clone https://huggingface.co/NAMAA-Space/Qari-OCR-0.2.2.1-VL-2B-Instruct mod
 ## بنية المشروع
 
 ```
-Nisaba-AI/
+Nisaba-OCR/
 ├── 1ـNisabaـOCRـcleaning.py               المرحلة 1: التنظيف
 ├── 2ـNisabaـOCRـcutـtoـwords.py            المرحلة 2: التقطيع
 ├── 3ـNisabaـOCRـtesseract.py               المرحلة 3: Tesseract
