@@ -156,18 +156,6 @@ Nisaba-OCR/
 
 يُحفظ الإعداد المقاس في `config/config.json`.
 
-### القيود الصادقة
-
-Nisaba **ليس مثالياً**. هذه حدوده الحقيقية حالياً:
-
-**1) 11 صورة من 459 فشلت بالكامل.** السبب: كاشف الأسطر (`PP-OCRv6_small_det`) يفشل على الأسطر القصيرة جداً (3-6 كلمات)، والنصوص بلونين منفصلين في سطر واحد، والأسطر الفارسية. الحل المستقبلي: كاشف أسطر مخصص، أو ترتيب حسب مركز السطر الرأسي.
-
-**2) `isi_0037` — حالة صعبة نموذجية.** نص بلونين (أسود + ذهبي) → الكاشف يرى سطرين → الترتيب يختل. CER لهذي الصورة وحدها: 75.68%.
-
-**3) 6 صور بخطأ CER أعلى من 20%.** أخطاء قراءة على كلمات معقدة، أو ترقيم دخيل، أو خطوط غير معتادة.
-
-**4) فارق 5 نقاط مع Gemini.** فارق حقيقي قابل للإغلاق، والتحسين الأكثر ترجيحاً: معالجة على مستوى السطر بدل الكلمة، متوقع في v0.5.
-
 ### المشروع قابل للتطور — ما زال في بداياته
 
 هذا المشروع مصمَّم صراحة ليستمر بالتحسن، وبنيته مبنية لهذا بالذات:
@@ -342,18 +330,6 @@ The parallel engine computes worker counts from **actually available RAM**:
 On a 16 GB machine, this typically resolves to: 10 Tesseract workers, 6 PP-OCRv6 workers, 2 Qari workers.
 
 The measured configuration is cached in `config/config.json`.
-
-### Honest Limitations
-
-Nisaba is **not perfect**. Here are its real, current limits:
-
-**1) 11 of 459 images failed completely.** Cause: the line detector (`PP-OCRv6_small_det`) struggles with very short lines (3–6 words), two differently-colored text runs on the same line, and Persian-script lines. Planned fix: a dedicated line detector, or ordering by each line's vertical center.
-
-**2) `isi_0037` — a representative hard case.** Two-colored text (e.g. black + gold) causes the detector to see two separate lines, breaking reading order. CER for this single image: 75.68%.
-
-**3) 6 images with CER above 20%.** Misreads on complex words, stray punctuation, or unusual fonts.
-
-**4) A 5-point gap with Gemini.** A real, closeable gap — the most promising fix is line-level rather than word-level recognition, planned for v0.5.
 
 ### This Project Is Built to Grow — It's Still Early
 
