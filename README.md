@@ -49,10 +49,10 @@
 
 | الإصدار | CER | التحسين |
 |---|:---:|---|
-| v0.1 — Otsu الأولي | 57.64% | نقطة البداية |
-| v0.2 — تنظيف متسامح | 51.13% | +6.5 نقطة |
-| v0.3 — معالجة لونية (Netra-CV) | 23.57% | +27.5 نقطة |
-| **v0.4 — إصلاح خطأ قياس في `_sources`** | **11.09%** | **+12.5 نقطة** |
+| v0.1  | 57.64% | نقطة البداية |
+| v0.2  | 51.13% | +6.5 نقطة |
+| v0.3  | 23.57% | +27.5 نقطة |
+| **v0.4** | **11.09%** | **+12.5 نقطة** |
 
 *(قفزة v0.4 كشفت أساساً خطأ قياس سابقاً في سكربت المقارنة نفسه، لا تحسيناً جديداً بالنماذج — التحسين الحقيقي المبني على النماذج هو الانتقال v0.2 إلى v0.3. يبقى 11.09% الرقم الدقيق والحالي.)*
 
@@ -236,10 +236,10 @@ Evaluated on **459 real Arabic images** from the [ISI-PPT dataset](https://huggi
 
 | Version | CER | Change |
 |---|:---:|---|
-| v0.1 — initial Otsu thresholding | 57.64% | starting point |
-| v0.2 — more tolerant cleaning | 51.13% | +6.5 points |
-| v0.3 — color-aware preprocessing (Netra-CV) | 23.57% | +27.5 points |
-| **v0.4 — fixed a `_sources` measurement bug** | **11.09%** | **+12.5 points** |
+| v0.1 | 57.64% | starting point |
+| v0.2 | 51.13% | +6.5 points |
+| v0.3 | 23.57% | +27.5 points |
+| **v0.4** | **11.09%** | **+12.5 points** |
 
 *(The v0.4 jump mainly exposed a pre-existing measurement bug in the benchmark script, rather than a new model improvement — the true model-driven gain is the v0.2 → v0.3 step. 11.09% remains the accurate, current figure.)*
 
