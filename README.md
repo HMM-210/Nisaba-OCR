@@ -87,22 +87,9 @@
 
 كل مرحلة تُنفَّذ **فقط** عندما تفشل التي قبلها، مما يوفّر الوقت (Tesseract أسرع بكثير من Qari) ويحافظ على الدقة (Qari يُستدعى فقط للكلمات الصعبة).
 
-### المتطلبات
+ ### التشغيل
 
-- **Docker Desktop** (Windows / macOS / Linux)
-- **مساحة فارغة:** ~4 GB (الصورة + النماذج)
-- **RAM:** 8 GB على الأقل (يُفضَّل 16)
-
-لا يحتاج إلى Python، ولا pip، ولا Tesseract، ولا أي تثبيت يدوي — كل شيء داخل Docker.
-
-### التشغيل
-
-```bash
-git clone https://github.com/HMM-210/Nisaba-OCR.git
-cd Nisaba-OCR
-docker compose build
-docker compose up
-```
+حمل الملفات المشروع والملفات الخلصه بنماذج الذكاء الاصطناعي المستخدمه وضعها بالمكان الصحيح
 
 ثم افتح المتصفح على:
 
@@ -287,22 +274,9 @@ final text
 
 Each stage runs **only** when the one before it fails — keeping things fast (Tesseract is far cheaper than Qari) while preserving accuracy (Qari is invoked only for genuinely hard words).
 
-### Requirements
-
-- **Docker Desktop** (Windows / macOS / Linux)
-- **Free disk space:** ~4 GB (image + models)
-- **RAM:** 8 GB minimum (16 GB recommended)
-
-No Python, no pip, no Tesseract, and no manual library installs — everything runs inside Docker.
-
 ### Running It
 
-```bash
-git clone https://github.com/HMM-210/Nisaba-OCR.git
-cd Nisaba-OCR
-docker compose build
-docker compose up
-```
+Download the project files and the files related to the used AI models, and put them in the correct location
 
 Then open your browser at:
 
